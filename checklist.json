@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "subjects": {
+    "Mathematics": [
+      { "id": "math-real-1", "text": "Euclid’s Division Lemma – statement, proof and numericals", "weightage": "high", "tags": ["theorem", "proof", "pyq"], "defaultBox": 1 },
+      { "id": "math-real-2", "text": "Fundamental Theorem of Arithmetic – HCF & LCM problems", "weightage": "high", "tags": ["theorem", "numerical"], "defaultBox": 1 },
+      { "id": "math-real-3", "text": "Decimal expansion of rational numbers", "weightage": "normal", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "math-poly-1", "text": "Zeros of polynomial – graphical method", "weightage": "normal", "tags": ["graph"], "defaultBox": 1 },
+      { "id": "math-poly-2", "text": "Relationship between zeros and coefficients (quadratic)", "weightage": "high", "tags": ["formula", "pyq"], "defaultBox": 1 },
+      { "id": "math-poly-3", "text": "Finding polynomial from given zeros", "weightage": "normal", "tags": ["numerical"], "defaultBox": 1 },
+
+      { "id": "math-linear-1", "text": "Pair of linear equations – graphical method", "weightage": "normal", "tags": ["graph"], "defaultBox": 1 },
+      { "id": "math-linear-2", "text": "Pair of linear equations – substitution method", "weightage": "high", "tags": ["numerical", "pyq"], "defaultBox": 1 },
+      { "id": "math-linear-3", "text": "Pair of linear equations – elimination method", "weightage": "high", "tags": ["numerical"], "defaultBox": 1 },
+      { "id": "math-linear-4", "text": "Pair of linear equations – word problems", "weightage": "high", "tags": ["numerical", "pyq"], "defaultBox": 1 },
+
+      { "id": "math-quad-1", "text": "Quadratic equations – factorisation method", "weightage": "high", "tags": ["numerical"], "defaultBox": 1 },
+      { "id": "math-quad-2", "text": "Quadratic equations – quadratic formula", "weightage": "high", "tags": ["formula", "pyq"], "defaultBox": 1 },
+      { "id": "math-quad-3", "text": "Nature of roots using discriminant", "weightage": "normal", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "math-ap-1", "text": "Arithmetic Progression – nth term", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+      { "id": "math-ap-2", "text": "Arithmetic Progression – sum of n terms", "weightage": "high", "tags": ["formula", "pyq"], "defaultBox": 1 },
+
+      { "id": "math-tri-1", "text": "Triangles – similarity criteria", "weightage": "high", "tags": ["theorem"], "defaultBox": 1 },
+      { "id": "math-tri-2", "text": "Pythagoras theorem and converse", "weightage": "high", "tags": ["theorem", "pyq"], "defaultBox": 1 },
+
+      { "id": "math-coord-1", "text": "Distance formula", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+      { "id": "math-coord-2", "text": "Area of triangle using coordinates", "weightage": "normal", "tags": ["numerical"], "defaultBox": 1 },
+
+      { "id": "math-trig-1", "text": "Trigonometric ratios and values", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+      { "id": "math-trig-2", "text": "Trigonometric identities – verification", "weightage": "high", "tags": ["formula", "pyq"], "defaultBox": 1 },
+      { "id": "math-trig-3", "text": "Heights and distances problems", "weightage": "high", "tags": ["numerical"], "defaultBox": 1 },
+
+      { "id": "math-circle-1", "text": "Tangent to a circle – theorem", "weightage": "high", "tags": ["theorem", "diagram"], "defaultBox": 1 },
+      { "id": "math-circle-2", "text": "Number of tangents from a point", "weightage": "normal", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "math-area-1", "text": "Area related to circles – sector and segment", "weightage": "high", "tags": ["formula", "numerical"], "defaultBox": 1 },
+
+      { "id": "math-volume-1", "text": "Surface areas & volumes – combination of solids", "weightage": "high", "tags": ["numerical"], "defaultBox": 1 },
+
+      { "id": "math-stats-1", "text": "Mean using step deviation method", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+      { "id": "math-stats-2", "text": "Ogive and graphical interpretation", "weightage": "normal", "tags": ["graph"], "defaultBox": 1 },
+
+      { "id": "math-prob-1", "text": "Probability – classical definition & numericals", "weightage": "high", "tags": ["formula"], "defaultBox": 1 }
+    ],
+
+    "Science": [
+      { "id": "phy-light-1", "text": "Reflection of light – ray diagrams for mirrors", "weightage": "high", "tags": ["diagram", "pyq"], "defaultBox": 1 },
+      { "id": "phy-light-2", "text": "Mirror formula and magnification", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+      { "id": "phy-light-3", "text": "Refraction through glass slab", "weightage": "high", "tags": ["diagram"], "defaultBox": 1 },
+      { "id": "phy-lens-1", "text": "Lens formula and numericals", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+
+      { "id": "phy-eye-1", "text": "Defects of vision and correction", "weightage": "high", "tags": ["diagram"], "defaultBox": 1 },
+
+      { "id": "phy-elec-1", "text": "Ohm’s law and V–I graph", "weightage": "high", "tags": ["formula", "diagram"], "defaultBox": 1 },
+      { "id": "phy-elec-2", "text": "Electric power and numericals", "weightage": "high", "tags": ["formula"], "defaultBox": 1 },
+
+      { "id": "phy-magnet-1", "text": "Magnetic field and Fleming’s rules", "weightage": "high", "tags": ["diagram"], "defaultBox": 1 },
+
+      { "id": "chem-reaction-1", "text": "Types of chemical reactions", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "chem-acid-1", "text": "pH scale and applications", "weightage": "high", "tags": ["definition", "pyq"], "defaultBox": 1 },
+      { "id": "chem-metal-1", "text": "Reactivity series and extraction of metals", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "chem-carbon-1", "text": "Homologous series and nomenclature", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+
+      { "id": "bio-life-1", "text": "Life processes – nutrition, respiration, transportation", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "bio-control-1", "text": "Control and coordination – nervous & hormonal system", "weightage": "high", "tags": ["diagram"], "defaultBox": 1 },
+      { "id": "bio-repro-1", "text": "Reproduction – asexual and sexual", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "bio-heredity-1", "text": "Mendel’s monohybrid cross", "weightage": "high", "tags": ["diagram", "pyq"], "defaultBox": 1 },
+      { "id": "bio-env-1", "text": "Food chains, trophic levels, ozone depletion", "weightage": "high", "tags": ["definition"], "defaultBox": 1 }
+    ],
+
+    "Social Science": [
+      { "id": "hist-1", "text": "Nationalism in India – role of Gandhiji", "weightage": "high", "tags": ["long-answer"], "defaultBox": 1 },
+      { "id": "hist-2", "text": "Nationalism in Europe – major events", "weightage": "normal", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "geo-1", "text": "Types of soils in India", "weightage": "high", "tags": ["definition", "pyq"], "defaultBox": 1 },
+      { "id": "geo-2", "text": "Agriculture – cropping patterns", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "civics-1", "text": "Federalism – features and types", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "civics-2", "text": "Political parties – functions and challenges", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+
+      { "id": "eco-1", "text": "Development indicators", "weightage": "normal", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "eco-2", "text": "Money and credit – formal vs informal", "weightage": "high", "tags": ["case-study"], "defaultBox": 1 },
+      { "id": "eco-3", "text": "Globalisation – impact on India", "weightage": "high", "tags": ["long-answer"], "defaultBox": 1 }
+    ],
+
+    "English": [
+      { "id": "eng-prose-1", "text": "Prose lessons – theme and message", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "eng-poetry-1", "text": "Poetry – theme and poetic devices", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "eng-writing-1", "text": "Analytical paragraph writing", "weightage": "high", "tags": ["writing"], "defaultBox": 1 },
+      { "id": "eng-grammar-1", "text": "Tenses, modals, subject–verb agreement", "weightage": "high", "tags": ["grammar"], "defaultBox": 1 }
+    ],
+
+    "Information Technology": [
+      { "id": "it-comm-1", "text": "Communication skills", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "it-self-1", "text": "Self-management skills", "weightage": "normal", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "it-cyber-1", "text": "Cyber safety – threats and prevention", "weightage": "high", "tags": ["case-study"], "defaultBox": 1 },
+      { "id": "it-html-1", "text": "HTML basics – tags and structure", "weightage": "high", "tags": ["practical"], "defaultBox": 1 }
+    ],
+
+    "Telugu": [
+      { "id": "tel-prose-1", "text": "Prose lessons – summary and central idea", "weightage": "high", "tags": ["concept"], "defaultBox": 1 },
+      { "id": "tel-poetry-1", "text": "Poetry – bhavaartham and alankaram", "weightage": "high", "tags": ["definition"], "defaultBox": 1 },
+      { "id": "tel-grammar-1", "text": "Sandhi and Samasam", "weightage": "high", "tags": ["grammar"], "defaultBox": 1 },
+      { "id": "tel-writing-1", "text": "Essay and letter writing", "weightage": "high", "tags": ["writing"], "defaultBox": 1 }
+    ]
+  }
+}

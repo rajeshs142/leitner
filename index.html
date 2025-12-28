@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>CBSE Class 10 Leitner Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<style>
+:root {
+  /* Dark Theme Palette */
+  --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8; --border: #334155;
+  --c1: #ef4444; --c2: #f59e0b; --c3: #3b82f6; --c4: #10b981; --c5: #8b5cf6; --c6: #64748b;
+}
+
+[data-theme="light"] {
+  --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; --border: #e2e8f0;
+}
+
+body { 
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+  background: var(--bg); color: var(--text); transition: background 0.3s; line-height: 1.4;
+}
+
+/* --- HEADER --- */
+header {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 10px 15px; position: sticky; top: 0; z-index: 1000;
+}
+.header-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.header-controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
+h2 { margin: 0; font-size: 1.2rem; flex-grow: 1; }
+
+button {
+  cursor: pointer; background: var(--border); color: var(--text); border: 1px solid var(--border);
+  padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+}
+.btn-primary { background: var(--c3); color: white; border: none; }
+.btn-danger { color: var(--c1); border-color: #ef444444; }
+
+/* --- SUBJECTS --- */
+#container { padding: 10px; }
+.subject { background: var(--card); margin-bottom: 15px; border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+.subject-header {
+  padding: 12px; background: rgba(255,255,255,0.03); display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; border-bottom: 1px solid var(--border);
+}
+.subject-title { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+
+/* --- BOXES (Horizontal Swipe on Mobile) --- */
+.boxes { 
+  display: flex; gap: 10px; padding: 10px; overflow-x: auto; 
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+}
+.box { 
+  min-width: 280px; flex: 1; background: rgba(0,0,0,0.2); border-radius: 8px; 
+  display: flex; flex-direction: column; scroll-snap-align: start;
+}
+.box-hd { 
+  font-size: 11px; text-transform: uppercase; font-weight: 800; padding: 10px; 
+  display: flex; justify-content: space-between; align-items: center; color: white;
+}
+
+.item-list { padding: 8px; flex-grow: 1; min-height: 50px; }
+
+/* --- ITEMS --- */
+.item {
+  background: var(--bg); margin-bottom: 6px; border-radius: 6px; 
+  border-left: 4px solid transparent; transition: background 0.2s;
+}
+.item-main { display: flex; align-items: center; min-height: 40px; }
+.item-text { flex-grow: 1; padding: 10px 5px; cursor: pointer; font-size: 13px; }
+.move-btn { 
+  width: 35px; align-self: stretch; display: flex; align-items: center; justify-content: center; 
+  background: transparent; border: none; color: var(--muted); font-size: 20px;
+}
+
+.item-drawer { display: none; padding: 0 10px 10px 10px; font-size: 11px; border-top: 1px solid var(--border); }
+.item.expanded .item-drawer { display: block; }
+
+.item-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+.tag { background: var(--card); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); font-size: 10px; color: var(--c3); }
+.item-footer { display: flex; justify-content: space-between; align-items: center; color: var(--muted); }
+
+/* --- BOX COLORS --- */
+.b1 .box-hd { background: var(--c1); } .b1 .item { border-left-color: var(--c1); }
+.b2 .box-hd { background: var(--c2); } .b2 .item { border-left-color: var(--c2); }
+.b3 .box-hd { background: var(--c3); } .b3 .item { border-left-color: var(--c3); }
+.b4 .box-hd { background: var(--c4); } .b4 .item { border-left-color: var(--c4); }
+.b5 .box-hd { background: var(--c5); } .b5 .item { border-left-color: var(--c5); }
+.b6 .box-hd { background: var(--c6); } .b6 .item { border-left-color: var(--c6); }
+
+/* --- MODALS --- */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+  display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;
+}
+.modal { background: var(--card); padding: 20px; border-radius: 12px; width: 100%; max-width: 400px; }
+.modal input, .modal select {
+  width: 100%; padding: 12px; margin-bottom: 12px; background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px; box-sizing: border-box;
+}
+
+.add-btn { margin: 10px; border: 1px dashed var(--muted); background: transparent; color: var(--muted); padding: 10px; }
+
+.hidden { display: none; }
+.chevron::before { content: '▸'; display: inline-block; transition: 0.2s; margin-right: 5px; }
+.subject:not(.collapsed) .chevron::before { transform: rotate(90deg); }
+
+@media (max-width: 600px) {
+  .header-row h2 { font-size: 1rem; }
+  .box { min-width: 85vw; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <h2>CBSE 10 <span style="font-weight:200; color:var(--muted)">Leitner</span></h2>
+    <button onclick="toggleTheme()">🌓 Mode</button>
+  </div>
+  <div class="header-controls">
+    <button onclick="openSubjectModal()" class="btn-primary">+ Subject</button>
+    <button onclick="importSyllabusGlobal()">Import Default</button>
+    <button onclick="toggleAllSubjectsGlobal()">Toggle View</button>
+    <button onclick="exportCSV()">Backup</button>
+    <button onclick="document.getElementById('csvIn').click()">Restore</button>
+    <button onclick="clearData()" class="btn-danger">Reset</button>
+  </div>
+</header>
+
+<div id="container"></div>
+
+<!-- Modals -->
+<div id="itemModal" class="modal-overlay">
+  <div class="modal">
+    <h4>Add New Topic</h4>
+    <input type="text" id="itemName" placeholder="Topic Name">
+    <select id="itemWeight">
+      <option value="normal">Normal Priority</option>
+      <option value="high">High Priority ⭐</option>
+    </select>
+    <input type="text" id="itemTags" placeholder="Tags (e.g. theorem, pyq)">
+    <div style="display:flex; gap:10px; justify-content: flex-end;">
+      <button onclick="closeModal('itemModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveItem()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="subModal" class="modal-overlay">
+  <div class="modal">
+    <h4>New Subject</h4>
+    <input type="text" id="subName" placeholder="Enter Subject Name">
+    <div style="display:flex; gap:10px; justify-content: flex-end;">
+      <button onclick="closeModal('subModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveSubject()">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Inputs -->
+<input type="file" id="csvIn" accept=".csv" onchange="importCSV(event)" style="display:none">
+<input type="file" id="subjectFileIn" accept=".json" onchange="handleSubjectFileImport(event)" style="display:none">
+
+<script>
+const CONFIG = {
+  boxNames: ["Weak", "Learning", "Stable", "Strong", "Ready", "Risk"],
+  coreSubjects: ["Mathematics", "Science", "Social Science", "English"],
+  storageKey: "leitner_v7_data",
+  collapseKey: "leitner_v7_collapse",
+  themeKey: "leitner_v7_theme"
+};
+
+let data = JSON.parse(localStorage.getItem(CONFIG.storageKey) || "{}");
+let collapsed = JSON.parse(localStorage.getItem(CONFIG.collapseKey) || "{}");
+let expandedItems = new Set();
+let syllabus = null;
+let currentSubjectTarget = "";
+
+/* --- INIT --- */
+async function loadSyllabus() {
+  try {
+    const res = await fetch('checklist.json');
+    const json = await res.json();
+    syllabus = json.subjects;
+  } catch (e) { console.warn("Syllabus file not found."); }
+}
+
+function init() {
+  if (Object.keys(data).length === 0) {
+    CONFIG.coreSubjects.forEach(s => data[s] = Array.from({length: 6}, () => []));
+    save();
+  }
+  applyTheme();
+  render();
+}
+
+function save() { localStorage.setItem(CONFIG.storageKey, JSON.stringify(data)); }
+function saveCollapse() { localStorage.setItem(CONFIG.collapseKey, JSON.stringify(collapsed)); }
+
+/* --- THEME --- */
+function applyTheme() {
+  const theme = localStorage.getItem(CONFIG.themeKey) || "dark";
+  document.documentElement.setAttribute("data-theme", theme);
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem(CONFIG.themeKey, next);
+}
+
+/* --- RENDER --- */
+function render() {
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  Object.keys(data).forEach(sub => {
+    const isCollapsed = collapsed[sub];
+    const totalItems = data[sub].flat().length;
+    const sDiv = document.createElement("div");
+    sDiv.className = `subject ${isCollapsed ? 'collapsed' : ''}`;
+
+    sDiv.innerHTML = `
+      <div class="subject-header" onclick="toggleSubject('${sub}')">
+        <div class="subject-title">
+          <span class="chevron"></span> ${sub} 
+          <span style="font-size:11px; color:var(--muted)">(${totalItems})</span>
+        </div>
+        <div style="display:flex; gap:5px;">
+          <button onclick="event.stopPropagation(); triggerSubjectImport('${sub}')" style="font-size:10px;">Import</button>
+          <button onclick="event.stopPropagation(); deleteSubject('${sub}')" class="btn-danger" style="font-size:10px;">Del</button>
+        </div>
+      </div>
+      <div class="boxes ${isCollapsed ? 'hidden' : ''}"></div>
+    `;
+
+    const boxesCont = sDiv.querySelector(".boxes");
+
+    data[sub].forEach((items, i) => {
+      const bDiv = document.createElement("div");
+      bDiv.className = `box b${i+1}`;
+      bDiv.innerHTML = `
+        <div class="box-hd">
+          <span>${CONFIG.boxNames[i]} (${items.length})</span>
+          <span onclick="toggleBoxItems('${sub}', ${i})" style="cursor:pointer; font-size:14px;">◩</span>
+        </div>
+      `;
+      
+      const list = document.createElement("div");
+      list.className = "item-list";
+
+      items.forEach((it, idx) => {
+        const uid = it.id || `${sub}-${i}-${idx}`;
+        const isExp = expandedItems.has(uid);
+        const iEl = document.createElement("div");
+        iEl.className = `item ${isExp ? 'expanded' : ''}`;
+        
+        iEl.innerHTML = `
+          <div class="item-main">
+            <button class="move-btn" onclick="move('${sub}',${i},${idx},-1)">‹</button>
+            <div class="item-text" onclick="toggleItemDrawer('${uid}')">
+              ${it.weightage === 'high' ? '⭐ ' : ''}${it.text}
+            </div>
+            <button class="move-btn" onclick="move('${sub}',${i},${idx},1)">›</button>
+          </div>
+          <div class="item-drawer">
+            <div class="item-tags">${(it.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+            <div class="item-footer">
+              <span>Updated: ${new Date(it.time).toLocaleString([], {dateStyle:'short', timeStyle:'short'})}</span>
+              <span onclick="removeItem('${sub}',${i},${idx})" style="color:var(--c1); font-weight:700;">DELETE</span>
+            </div>
+          </div>
+        `;
+        list.appendChild(iEl);
+      });
+
+      bDiv.appendChild(list);
+      if(i === 0) {
+        const addBtn = document.createElement("button");
+        addBtn.className = "add-btn"; addBtn.textContent = "+ Add New Topic";
+        addBtn.onclick = () => openItemModal(sub);
+        bDiv.appendChild(addBtn);
+      }
+      boxesCont.appendChild(bDiv);
+    });
+    container.appendChild(sDiv);
+  });
+}
+
+/* --- LOGIC --- */
+function toggleSubject(sub) { collapsed[sub] = !collapsed[sub]; saveCollapse(); render(); }
+function toggleAllSubjectsGlobal() {
+  const anyCol = Object.values(collapsed).some(v => v === true);
+  Object.keys(data).forEach(s => collapsed[s] = !anyCol);
+  saveCollapse(); render();
+}
+
+function toggleItemDrawer(uid) {
+  if (expandedItems.has(uid)) expandedItems.delete(uid);
+  else expandedItems.add(uid);
+  render();
+}
+
+function toggleBoxItems(sub, bIdx) {
+  const boxItems = data[sub][bIdx];
+  const anyExp = boxItems.some(it => expandedItems.has(it.id || `${sub}-${bIdx}`));
+  boxItems.forEach((it, idx) => {
+    const id = it.id || `${sub}-${bIdx}-${idx}`;
+    if (anyExp) expandedItems.delete(id); else expandedItems.add(id);
+  });
+  render();
+}
+
+function move(sub, b, i, d) {
+  if (b+d < 0 || b+d > 5) return;
+  const it = data[sub][b][i];
+  it.time = Date.now();
+  data[sub][b].splice(i, 1);
+  data[sub][b+d].push(it);
+  save(); render();
+}
+
+function removeItem(sub, b, i) {
+  if (confirm("Delete this?")) { data[sub][b].splice(i, 1); save(); render(); }
+}
+
+function deleteSubject(sub) {
+  if (confirm(`Delete ${sub}?`)) { delete data[sub]; save(); render(); }
+}
+
+/* --- MODALS --- */
+function openItemModal(sub) { 
+  currentSubjectTarget = sub; 
+  document.getElementById('itemModal').style.display = 'flex'; 
+}
+function openSubjectModal() { document.getElementById('subModal').style.display = 'flex'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+function saveSubject() {
+  const name = document.getElementById('subName').value.trim();
+  if (name) { data[name] = Array.from({length: 6}, () => []); save(); render(); closeModal('subModal'); }
+}
+
+function saveItem() {
+  const name = document.getElementById('itemName').value.trim();
+  if (!name) return;
+  data[currentSubjectTarget][0].push({
+    id: 'it-' + Date.now(),
+    text: name,
+    weightage: document.getElementById('itemWeight').value,
+    tags: document.getElementById('itemTags').value.split(',').map(t=>t.trim()).filter(t=>t),
+    time: Date.now()
+  });
+  save(); render(); closeModal('itemModal');
+}
+
+/* --- IMPORT / EXPORT --- */
+async function importSyllabusGlobal() {
+  if (!syllabus) await loadSyllabus();
+  if (!syllabus) return alert("checklist.json not found.");
+  Object.keys(syllabus).forEach(sub => {
+    if (!data[sub]) data[sub] = Array.from({length: 6}, () => []);
+    syllabus[sub].forEach(t => {
+      if (!data[sub].flat().some(it => it.text === t.text)) {
+        data[sub][0].push({...t, time: Date.now(), id: 'sy-' + Math.random().toString(36).substr(2,5)});
+      }
+    });
+  });
+  save(); render();
+}
+
+function triggerSubjectImport(sub) { currentSubjectTarget = sub; document.getElementById('subjectFileIn').click(); }
+function handleSubjectFileImport(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = (ev) => {
+    try {
+      const items = JSON.parse(ev.target.result);
+      const toAdd = Array.isArray(items) ? items : (items[currentSubjectTarget] || []);
+      toAdd.forEach(newIt => {
+        if (!data[currentSubjectTarget].flat().some(it => it.text === newIt.text)) {
+          data[currentSubjectTarget][0].push({...newIt, time: Date.now()});
+        }
+      });
+      save(); render();
+    } catch (err) { alert("Invalid Format"); }
+  };
+  r.readAsText(file);
+}
+
+function exportCSV() {
+  let csv = "Subject,Box,Topic,Weightage,Tags,Time\n";
+  Object.keys(data).forEach(s => data[s].forEach((box, i) => box.forEach(it => {
+    csv += `"${s}",${i+1},"${it.text}","${it.weightage}","${(it.tags||[]).join('|')}","${new Date(it.time).toISOString()}"\n`;
+  })));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = `leitner_backup.csv`; a.click();
+}
+
+function importCSV(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    const lines = r.result.split('\n').slice(1);
+    const newData = {};
+    lines.forEach(l => {
+      const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+      if (p.length < 3) return;
+      const s = p[0].replace(/"/g,"");
+      if (!newData[s]) newData[s] = Array.from({length:6},()=>[]);
+      newData[s][parseInt(p[1])-1].push({
+        text: p[2].replace(/"/g,""), weightage: p[3]?p[3].replace(/"/g,""):"normal",
+        tags: p[4]?p[4].replace(/"/g,"").split('|'):[], time: Date.now()
+      });
+    });
+    data = newData; save(); render();
+  };
+  r.readAsText(file);
+}
+
+function clearData() { if(confirm("Wipe everything?")) { localStorage.clear(); location.reload(); } }
+
+loadSyllabus().then(init);
+</script>
+</body>
+</html>
