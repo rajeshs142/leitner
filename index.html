@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<title>CBSE Class 10 Leitner Pro</title>
+<title>CBSE 10 Leitner</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <style>
 :root {
@@ -71,7 +71,7 @@ button {
 .item-text { flex-grow: 1; padding: 10px 5px; cursor: pointer; font-size: 13px; }
 .move-btn { 
   width: 35px; align-self: stretch; display: flex; align-items: center; justify-content: center; 
-  background: transparent; border: none; color: var(--muted); font-size: 20px;
+  background: transparent; border: none; color: var(--muted); font-size: 32px;
 }
 
 .item-drawer { display: none; padding: 0 10px 10px 10px; font-size: 11px; border-top: 1px solid var(--border); }
@@ -166,7 +166,7 @@ button {
 <script>
 const CONFIG = {
   boxNames: ["Weak", "Learning", "Stable", "Strong", "Ready", "Risk"],
-  coreSubjects: ["Mathematics", "Science", "Social Science", "English"],
+  coreSubjects: ["Mathematics", "Physics", "Chemistry","Biology","History","Geography","Political Science","Economics", "English Prose", "English Poetry", "English Non-Detailed"],
   storageKey: "leitner_v7_data",
   collapseKey: "leitner_v7_collapse",
   themeKey: "leitner_v7_theme"
@@ -229,8 +229,8 @@ function render() {
           <span style="font-size:11px; color:var(--muted)">(${totalItems})</span>
         </div>
         <div style="display:flex; gap:5px;">
-          <button onclick="event.stopPropagation(); triggerSubjectImport('${sub}')" style="font-size:10px;">Import</button>
-          <button onclick="event.stopPropagation(); deleteSubject('${sub}')" class="btn-danger" style="font-size:10px;">Del</button>
+          <button onclick="event.stopPropagation(); triggerSubjectImport('${sub}')" style="font-size:12px;">Import</button>
+          <button onclick="event.stopPropagation(); deleteSubject('${sub}')" class="btn-danger" style="font-size:12px;">Del</button>
         </div>
       </div>
       <div class="boxes ${isCollapsed ? 'hidden' : ''}"></div>
